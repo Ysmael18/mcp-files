@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if command -v python3 &>/dev/null; then
+  exec python3 "$DIR/todo.py" "$@"
+elif command -v node &>/dev/null; then
+  exec node "$DIR/todo.js" "$@"
+else
+  echo "Error: Neither python3 nor node found in PATH." >&2
+  exit 1
+fi
